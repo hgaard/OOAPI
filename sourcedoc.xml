@@ -1,0 +1,764 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ooapi.net</name>
+    </assembly>
+    <members>
+        <member name="M:org.openoces.ooapi.certificate.Ca.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2,org.openoces.ooapi.certificate.Ca)">
+            <summary>
+            Constructs a CA with <code>certificate</code> as the certificate of this
+            CA and <code>issuingCa</code> as the parent CA which has signed the
+            certificate of this CA
+            </summary>
+            <param name="certificate">CA certificate</param>
+            <param name="issuingCa">CA which has signed the certificate of this CA</param>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.Ca.IsRoot">
+            <summary>
+             Returns <code>true></code> if this CA is a root CA otherwise false
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.Ca.PublicKey">
+            <summary>
+            Gets the public key of this CA
+            </summary>
+            <returns>public key of this CA</returns>
+        </member>
+        <member name="T:org.openoces.ooapi.certificate.CertificateStatus">
+            <summary>
+            Represents the status of a certificate
+            </summary>
+        </member>
+        <member name="T:org.openoces.ooapi.certificate.OcesCertificate">
+            <summary>
+            Abstract super class for all types of OCES certificates.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.IOcesCertificate.GetBytes">
+            <summary>
+            Gets the bytes of the encapsulated <code>X509Certificate</code>. Encoding is dictated by the encoding of the encapsulated X509Certificate.
+            </summary>
+            <returns>The bytes of the encapsulated <code>X509Certificate</code>. Encoding is dictated by the encoding of the encapsulated X509Certificate.</returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.IOcesCertificate.ValidityStatus">
+            <summary>
+            Gets the status of the certificate @see <code>CertificateStatus</code>
+            </summary>
+            <returns>the status of the certificate @see <code>CertificateStatus</code></returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.IOcesCertificate.ValidityStatus(System.DateTime)">
+            <summary>
+            Checks if the certificate is valid on the given date.
+            </summary>
+            <param name="date">Date for validity check.</param>
+            <returns>
+            <code>CertificateStatus.Valid</code> if the certificate is valid, 
+            <code>CertificateStatus.Expired</code> if certificate is expired, or 
+            <code>CertificateStatus.NotYetValid if the certificate is not yet valid on the given date</code>
+            </returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.IOcesCertificate.ValidOnDate(System.DateTime)">
+            <summary>
+            Returns true if the certificate is valid on the given date.
+            </summary>
+            <param name="date">date to check certificate validity</param>
+            <returns>true if this certificate is valid on the given date.</returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.IOcesCertificate.ExportCertificate">
+            <summary>
+            Gets a clone of the encapsulated <code>X509Certificate</code>
+            </summary>
+            <returns>A clone of the encapsulated <code>X509Certificate</code></returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.IssuingCa">
+            <summary>
+            Gets the signing Certificate Authority (CA) parent relation of this certificate
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.SubjectCn">
+            <summary>
+            Gets the subject CN (common name) of the certificate.
+            </summary>
+            <returns>The subject CN (common name) of the certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.NotBefore">
+            <summary>
+            Gets the start date of the validity period.
+            </summary>
+            <returns>the start date of the validity period.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.NotAfter">
+            <summary>
+            Gets the end date of the validity period.
+            </summary>
+            <returns>the end date of the validity period.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.SerialNumber">
+            <summary>
+            Gets the serial number of certificate. The serial number is unique for all certificates issued by a specific CA. 
+            </summary>
+            <returns>
+            serial number of certificate. The serial number is unique for all certificates issued by a specific CA. 
+            </returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.OcspUrl">
+            <summary>
+            Gets the OCSP URL of the certificate
+            </summary>
+            <returns>the OCSP URL of the certificate</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.CaIssuerUrl">
+            <summary>
+            Gets the caIssuer URL of the certificate
+            </summary>
+            <returns>the caIssuer URL of the certificate</returns>
+            <throws>InvalidCaIssuerUrlException in case that no ca issuer url specified in the certificate.</throws>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.IssuerDn">
+            <summary>
+            Gets the distinguished name of the issuer CA.
+            </summary>
+            <returns>distinguished name of the issuer CA.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.Dn">
+            <summary>
+            Gets the distinguished name of this certificate.
+            </summary>
+            <returns>the distinguished name of this certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.SubjectDistinguishedName">
+            <summary>
+            Gets the subject distinguished name of this certificate.
+            </summary>
+            <returns>the subject distinguished name of this certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.CertificateChain">
+            <summary>
+            Gets the certificate chain of this certificate. The certificate chain consists of this certificate and one (or more) of its signing CAs. The chain ends with the root CA.
+            </summary>
+            <returns>the certificate chain of this certificate. The certificate chain consists of this certificate and one (or more) of its signing CAs. The chain ends with the root CA.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.EmailAddress">
+            <summary>
+            Gets the email in this certificate or null if no email is part of this certificate.
+            </summary>
+            <returns>the email in this certificate or null if no email is part of this certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.CrlDistributionPoint">
+            <summary>
+            The distribution point of the Certificate Revocation List (CRL) that this certificate must be checked against for revocation 
+            </summary>
+            <returns>Distribution point as a <code>String</code> of the Certificate Revocation List (CRL) that this certificate must be checked against for revocation</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.PartitionedCrlDistributionPoint">
+            <summary>
+            The distribution point of the partitioned Certificate Revocation List (CRL) that this certificate must be checked against for revocation
+            </summary>
+            <returns>Distribution point of the partitioned Certificate Revocation List (CRL) that this certificate must be checked against for revocation</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.IOcesCertificate.DistributionPoints">
+            <summary>
+            The distribution point of the Certificate Revocation List (CRL) that this certificate must be checked against for revocation
+            </summary>
+            <returns>
+            Distribution point as a <code>CrlDistributionPoints</code> instance of the Certificate Revocation List (CRL) 
+            that this certificate must be checked against for revocation
+            </returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2,org.openoces.ooapi.certificate.Ca)">
+            <summary>
+            Creates a OcesCertificate.
+            </summary>
+            <param name="certificate"><code>X509Certificate</code> to encapsulate</param>
+            <param name="issuingCa">parent relation to its issuing CA</param>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificate.GetBytes">
+            <summary>
+            Gets the bytes of the encapsulated <code>X509Certificate</code>. Encoding is dictated by the encoding of the encapsulated X509Certificate.
+            </summary>
+            <returns>The bytes of the encapsulated <code>X509Certificate</code>. Encoding is dictated by the encoding of the encapsulated X509Certificate.</returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificate.ValidityStatus">
+            <summary>
+            Gets the status of the certificate @see <code>CertificateStatus</code>
+            </summary>
+            <returns>the status of the certificate @see <code>CertificateStatus</code></returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificate.ValidityStatus(System.DateTime)">
+            <summary>
+            Checks if the certificate is valid on the given date.
+            </summary>
+            <param name="date">Date for validity check.</param>
+            <returns>
+            <code>CertificateStatus.Valid</code> if the certificate is valid, 
+            <code>CertificateStatus.Expired</code> if certificate is expired, or 
+            <code>CertificateStatus.NotYetValid if the certificate is not yet valid on the given date</code>
+            </returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificate.ValidOnDate(System.DateTime)">
+            <summary>
+            Returns true if the certificate is valid on the given date.
+            </summary>
+            <param name="date">date to check certificate validity</param>
+            <returns>true if this certificate is valid on the given date.</returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificate.GetElementInX509Name(System.String)">
+            <summary>
+            Gets a specific element of the subject DN
+            </summary>
+            <param name="element">element <code>Name</code> of element to return value of</param>
+            <returns>Specific element of the subject DN</returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificate.ExportCertificate">
+            <summary>
+            Gets a clone of the encapsulated <code>X509Certificate</code>
+            </summary>
+            <returns>A clone of the encapsulated <code>X509Certificate</code></returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.IssuingCa">
+            <summary>
+            Gets the signing Certificate Authority (CA) parent relation of this certificate
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.SubjectCn">
+            <summary>
+            Gets the subject CN (common name) of the certificate.
+            </summary>
+            <returns>The subject CN (common name) of the certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.NotBefore">
+            <summary>
+            Gets the start date of the validity period.
+            </summary>
+            <returns>the start date of the validity period.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.NotAfter">
+            <summary>
+            Gets the end date of the validity period.
+            </summary>
+            <returns>the end date of the validity period.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.SerialNumber">
+            <summary>
+            Gets the serial number of certificate. The serial number is unique for all certificates issued by a specific CA. 
+            </summary>
+            <returns>
+            serial number of certificate. The serial number is unique for all certificates issued by a specific CA. 
+            </returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.OcspUrl">
+            <summary>
+            Gets the OCSP URL of the certificate
+            </summary>
+            <returns>the OCSP URL of the certificate</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.CaIssuerUrl">
+            <summary>
+            Gets the caIssuer URL of the certificate
+            </summary>
+            <returns>the caIssuer URL of the certificate</returns>
+            <throws>InvalidCaIssuerUrlException in case that no ca issuer url specified in the certificate.</throws>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.IssuerDn">
+            <summary>
+            Gets the distinguished name of the issuer CA.
+            </summary>
+            <returns>distinguished name of the issuer CA.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.Dn">
+            <summary>
+            Gets the distinguished name of this certificate.
+            </summary>
+            <returns>the distinguished name of this certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.SubjectDistinguishedName">
+            <summary>
+            Gets the subject distinguished name of this certificate.
+            </summary>
+            <returns>the subject distinguished name of this certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.CertificateChain">
+            <summary>
+            Gets the certificate chain of this certificate. The certificate chain consists of this certificate and one (or more) of its signing CAs. The chain ends with the root CA.
+            </summary>
+            <returns>the certificate chain of this certificate. The certificate chain consists of this certificate and one (or more) of its signing CAs. The chain ends with the root CA.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.EmailAddress">
+            <summary>
+            Gets the email in this certificate or null if no email is part of this certificate.
+            </summary>
+            <returns>the email in this certificate or null if no email is part of this certificate.</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.CrlDistributionPoint">
+            <summary>
+            The distribution point of the Certificate Revocation List (CRL) that this certificate must be checked against for revocation 
+            </summary>
+            <returns>Distribution point as a <code>String</code> of the Certificate Revocation List (CRL) that this certificate must be checked against for revocation</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.PartitionedCrlDistributionPoint">
+            <summary>
+            The distribution point of the partitioned Certificate Revocation List (CRL) that this certificate must be checked against for revocation
+            </summary>
+            <returns>Distribution point of the partitioned Certificate Revocation List (CRL) that this certificate must be checked against for revocation</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificate.DistributionPoints">
+            <summary>
+            The distribution point of the Certificate Revocation List (CRL) that this certificate must be checked against for revocation
+            </summary>
+            <returns>
+            Distribution point as a <code>CrlDistributionPoints</code> instance of the Certificate Revocation List (CRL) 
+            that this certificate must be checked against for revocation
+            </returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.FocesCertificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2,org.openoces.ooapi.certificate.Ca)">
+            <summary>
+            Contructs a FOCES certificate with the given <code>CA</code> as parent
+            </summary>
+            <param name="certificate">certificate</param>
+            <param name="parent">parent signing CA</param>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.FocesCertificate.Fid">
+            <summary>
+            Gets the FID of the functional certificate 
+            </summary>
+            <returns>The FID of the functional certificate</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.FocesCertificate.Cvr">
+            <summary>
+            Gets the CVR of the functional certificate 
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.MocesCertificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2,org.openoces.ooapi.certificate.Ca)">
+            <summary>
+            Contructs a MOCES certificate with the given <code>CA</code> as parent 
+            </summary>
+            <param name="certificate">certificate</param>
+            <param name="parent">parent signing CA</param>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.MocesCertificate.Rid">
+            <summary>
+            Gets the RID of the functional certificate 
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.MocesCertificate.Cvr">
+            <summary>
+            Gets the CVR of the functional certificate 
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.MocesCertificate.OrganizationalUnit">
+            <summary>
+            Gets the Organizational Unit of the certificate if it exists else null
+            </summary>
+        </member>
+        <member name="T:org.openoces.ooapi.certificate.OcesCertificateFactory">
+            <summary>
+            Factory able to create an <code>OcesCertificate</code>. 
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificateFactory.Generate(System.Collections.Generic.List{System.Security.Cryptography.X509Certificates.X509Certificate2})">
+            <summary>
+             Generates an <code>OcesCertificate</code>. The returned <code>OcesCertificate</code> is the end user certificate, which has a parent relation 
+             to the certificate of its issuing CA which again can have a parent relation to the certificate of the root CA. 
+             The root CA has no parent relation.
+             
+            The factory verifies that each certificate in the certificate chain has been signed by its issuing CA.
+            </summary>
+            <param name="certificates">List of certificates to create OcesCertificate chain from.</param>
+            <returns><code>OcesCertificate</code> with parent relation to (chain of) issuing CAs. Depending on the Subject DN in the 
+            certificate a <code>PocesCertificate</code>, <code>MocesCertificate</code>, <code>VocesCertificate</code>, or <code>FocesCertificate</code> will be created.</returns>
+             <exception cref="T:org.openoces.ooapi.exceptions.TrustCouldNotBeVerifiedException">when a OcesCertificate in the chain cannot be trusted, i.e. has not been signed by its issuing CA.</exception>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.OcesCertificateFactory.SortCertificatesIssuerLast(System.Collections.Generic.IEnumerable{System.Security.Cryptography.X509Certificates.X509Certificate2})">
+            <summary>
+            Find all certificates that are not self-signed and has key usage "digital signature".
+            Then sort all certificates, so that issuers are after the certificates they sign.
+            Certificates in the list that were not part of the trust chain for the digital signatures are not retained.
+            </summary>
+            <returns>sorted certificates needed to verify the digital signatures from the input list</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.OcesCertificateFactory.Instance">
+            <summary>
+            Gives the singleton instance.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.PocesCertificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2,org.openoces.ooapi.certificate.Ca)">
+            <summary>
+            Contructs a POCES certificate with the given <code>CA</code> as parent  
+            </summary>
+            <param name="certificate">certificate</param>
+            <param name="parent">parent signing CA</param>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.PocesCertificate.HasPseudonym">
+            <summary>
+            </summary>
+            <returns><code>true</code> if this certificate has the string "Pseudonym" as name</returns>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.PocesCertificate.IsYouthCertificate">
+            <summary>
+            </summary>
+            <returns><code>true</code> if this certificate is a youth certificate</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.PocesCertificate.Pid">
+            <summary>
+             Gets the PID of the personal certificate
+            </summary>
+        </member>
+        <member name="T:org.openoces.ooapi.certificate.VocesCertificate">
+            <summary>
+            VOCES certificate (aka organizational certificate) (danish: virksomhedscertifikat) 
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.VocesCertificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2,org.openoces.ooapi.certificate.Ca)">
+            <summary>
+            Contructs a VOCES certificate with the given <code>CA</code> as parent   
+            </summary>
+            <param name="certificate">certificate</param>
+            <param name="parent">parent signing CA</param>
+        </member>
+        <member name="M:org.openoces.ooapi.certificate.VocesCertificate.CanSignOcspResponses">
+            <summary>
+            Returns <code>true</code> if this certificate can be used for 
+            signing OCSP responses (the extended keyusage contains the oid 1.3.6.1.5.5.7.3.9)
+            otherwise false
+            
+            Reference http://www.ietf.org/rfc/rfc3280.txt
+            </summary>
+            <returns><code>true</code> if this certificate can be used for signing OCSP responses otherwise false</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.VocesCertificate.Uid">
+            <summary>
+            The UID of the organizational certificate
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.certificate.VocesCertificate.Cvr">
+            <summary>
+            Gets the CVR of the functional certificate 
+            </summary>
+        </member>
+        <member name="T:org.openoces.ooapi.environment.Environments">
+            <summary>
+            Defines the supported OCESI and OCESII test and production environments
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.environment.Environments.OcesEnvironments">
+            <summary>
+            Sets the environments that must be supported in this execution context.
+            The list of environments that must be supported can only be set once in a specific execution context.
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.environment.Environments.TrustedCertificates">
+            <summary>
+            Gets list of <code>X509Certificate</code>s of the CAs that are currently trusted.
+            </summary>
+        </member>
+        <member name="P:org.openoces.ooapi.environment.Environments.TrustedEnvironments">
+            <summary>
+            Gets the trusted environments. An empty set is
+            returned if no environments are trusted or if the
+            set of trusted environments has not yet been set.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.environment.RootCertificates.LookupCertificate(org.openoces.ooapi.environment.OcesEnvironment)">
+            <summary>
+            Gets root certificate of the given <code>Environment</code>
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.environment.RootCertificates.GetEnvironment(org.openoces.ooapi.certificate.Ca)">
+            <summary>
+            Gets <code>Environment</code> for given <code>CA</code>
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.ping.OcspAliveTester.PingOcsp(System.String)">
+            <summary>
+            This method makes a ping to all OCSPs defined in the <code>Environments</code>.
+            It also calls the OCSPs with root certificate for current environment.
+            </summary>
+            <returns>True if all pings went good else false</returns>
+        </member>
+        <member name="M:org.openoces.ooapi.signatures.OpensignAbstractSignature.IsValidOces2Signature(System.Xml.XmlDocument)">
+            <summary>
+            Valideringskode inspireret af:
+            http://www.woloszyn.org/2008/01/03/how-to-verify-digital-signatures-of-xml-documents-without-wse3/
+            </summary>
+        </member>
+        <member name="T:org.openoces.ooapi.validation.IRevocationChecker">
+            <summary>
+            A RevocationChecker can check whether an certificate has been revoked.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.validation.IRevocationChecker.IsRevoked(org.openoces.ooapi.certificate.IOcesCertificate)">
+            <summary>
+            Checks whether the chain element has been revoked or not.
+            </summary>
+            <param name="certificate">The chain element to check</param>
+            <returns>Whether the chain element has been revoked or not</returns>
+        </member>
+        <member name="T:org.openoces.ooapi.utils.Properties">
+            <summary>
+            Reads properties from App.config / Web.config.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.utils.Properties.IsDefined(System.String)">
+            <summary>
+            Determines whether or not the given configuration property is defined or not.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.validation.IHttpCrlDownloader.Download(System.String)">
+            <param name="location">The url of the CRL</param>
+        </member>
+        <member name="T:org.openoces.ooapi.validation.Crl">
+            <summary>
+            Models a Certificate Revocation List (CRL).
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.validation.Crl.IsRevoked(org.openoces.ooapi.certificate.IOcesCertificate)">
+            <summary>
+            Returns <code>true</code> if the given certificate is revoked and false otherwise 
+            </summary>
+            <param name="certificate">certificate certificate to check for revocation</param>
+            <returns><code>true</code> if the given certificate is revoked and false otherwise 
+            including if this CRL has expired.</returns>
+            <throws>InvalidOperationException if this CRL is not valid or is not signed by the certificate's issuing CA.</throws>
+        </member>
+        <member name="M:org.openoces.ooapi.validation.CrlCache.#ctor(System.Int32)">
+            <param name="timeout">The timeout in minutes of cached elements</param>
+        </member>
+        <member name="T:org.openoces.ooapi.validation.CrlDistributionPoints">
+            <summary>
+            Class represents the certificate revocation list (CRL) distribution point associated with a certificate 
+            Each certificate has exactly one master CRL and one partitioned CRL associated to it.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.validation.FullCrlRevocationChecker.DownloadCrl(org.openoces.ooapi.certificate.IOcesCertificate)">
+            <summary>
+            Downloads the full CRL for the given certificate.
+            </summary>
+            <param name="certificate">certificate to download full CRL for</param>
+            <returns>full CRL for given certificate</returns>
+        </member>
+        <member name="P:org.openoces.ooapi.validation.FullCrlRevocationChecker.Instance">
+            <summary>
+            The <code>FullCrlRevocationChecker</code> instance.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.validation.XmlDsigParser.CertificateChain(System.String)">
+            <summary>
+            Creates a chain of X509Certificates given the provided XML-DSig.
+            </summary>
+            <param name="xmlDoc">XML-Dsig used to create the chain.</param>
+            <returns>Chain of X509Certificates</returns>
+        </member>
+        <member name="T:org.openoces.ooapi.validation.PartitionedCrlRevocationChecker">
+            <summary>
+            <code>RevocationChecker</code> based on a partitioned CRL.
+            </summary>
+        </member>
+        <member name="M:org.openoces.ooapi.validation.PartitionedCrlRevocationChecker.IsRevoked(org.openoces.ooapi.certificate.IOcesCertificate)">
+            <summary>
+            The partitioned CRL to check for revocation is retrieved using LDAP.
+            </summary>
+        </member>
+        <member name="T:org.openoces.securitypackage.LogonHandler">
+            <summary>
+            This class handles validation and extraction of person ID from the output data provided by the Open Logon applet.
+            </summary>
+        </member>
+        <member name="M:org.openoces.securitypackage.LogonHandler.ValidateAndExtractPid(System.String,System.String,System.String)">
+            <summary>
+            Given the output data from the Open Logon applet, the person ID (pid) is extracted if the login data is valid.
+            </summary>
+            <param name="loginData">the output data from the Open Logon applet.</param>
+            <param name="challenge">the challenge applet parameter.</param>
+            <param name="logonto">expected value of the signature parameter <code>logonto</code> for OCESI applet responses or
+            of the signature parameter <code>RequestIssuer</code> for OCESII applet responses. Can be set to <code>null</code>
+            if validation should not be performed (this is not recommended).</param>
+            <returns>the pid of the certificate that is used for logging in. Only valid pids are returned.</returns>
+            <throws>ServiceProviderException in case that no pid can be extracted from the data provided.</throws>
+            <throws>AppletException in case the applet returned an error code.</throws>
+        </member>
+        <member name="M:org.openoces.securitypackage.LogonHandler.ValidateSignatureAndExtractCertificate(System.String,System.String,System.String)">
+            <summary>
+            Given the output data from the Open Logon applet, the certificate is extracted if the login data is valid.
+            NB! The validity of the certificate is *NOT* checked 
+            (i.e. it is not checked if the certificate is valid, invalid, revoked, not yet valid or expired) 
+            </summary>
+            <param name="loginData">the output data from the Open Logon applet.</param>
+            <param name="challenge">the challenge applet parameter.</param>
+            <param name="logonto">expected value of the signature parameter <code>logonto</code> for OCESI applet responses or
+            of the signature parameter <code>RequestIssuer</code> for OCESII applet responses. Can be set to <code>null</code>
+            if validation should not be performed (this is not recommended).</param>
+            <returns>the certificate that is used for logging in.</returns>
+        </member>
+        <member name="M:org.openoces.securitypackage.LogonHandler.ValidateAndExtractCertificateAndStatus(System.String,System.String,System.String)">
+            <summary>
+            Given the output data from the Open Logon applet, the certificate extracted if the login data is valid. 
+            The status of the certificate is checked and a the certificate and its status is returned wrapped in a 
+            CertificateStatus instance.
+            </summary>
+            <param name="loginData">the output data from the Open Logon applet.</param>
+            <param name="challenge">the challenge applet parameter.</param>
+            <param name="logonto">expected value of the signature parameter <code>logonto</code> for OCESI applet responses or
+            of the signature parameter <code>RequestIssuer</code> for OCESII applet responses. Can be set to <code>null</code>
+            if validation should not be performed (this is not recommended).</param>
+            <returns>the certificate that is used for logging in and the status of this certificate (wrapped in a CertificateStatus instance)</returns>
+        </member>
+        <member name="T:org.openoces.securitypackage.PersonId">
+            <summary>
+            Models the ID of a person also known as the PID. The PID is part of a Personal OCES (POCES) certificate (danish: borgercertifikat).
+            </summary>
+        </member>
+        <member name="T:org.openoces.securitypackage.SignatureValidationStatus">
+            <summary>
+            Signature validation result.
+            </summary>
+        </member>
+        <member name="F:org.openoces.securitypackage.SignatureValidationStatus.Signature">
+            <value>The signature.</value>
+        </member>
+        <member name="F:org.openoces.securitypackage.SignatureValidationStatus.CertificateStatus">
+            <value>Current status of the certificate.</value>
+        </member>
+        <member name="F:org.openoces.securitypackage.SignatureValidationStatus.SignatureMatches">
+            <value>Signature matches.</value>
+        </member>
+        <member name="F:org.openoces.securitypackage.SignatureValidationStatus.certificate">
+            <value>The certificate used for signing.</value>
+        </member>
+        <member name="T:org.openoces.securitypackage.SignHandler">
+            <summary>
+            This class handles validation and extraction of person ID from the output data provided by the Open Sign applet. 
+            </summary>
+        </member>
+        <member name="M:org.openoces.securitypackage.SignHandler.ValidateSignatureAgainstAgreement(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Given the output data from the Open Sign applet, signed text is extracted if the login data is valid.
+            </summary>
+            <param name="loginData">the output data from the Open Sign applet (base64 encoded).</param>
+            <param name="agreement">the string to match against the signed text in the login data.</param>
+            <param name="logonto">expected value of the signature parameter <code>logonto</code> for OCESI applet responses or 
+            of the signature parameter <code>RequestIssuer</code> for OCESII applet responses. Can be set to <code>null</code>
+            if validation should not be performed (this is not recommended)</param>.
+            <returns>true if the signed text matches the agreement parameter</returns>
+            <throws>AppletException in case the applet returned an error code.</throws>
+        </member>
+        <member name="M:org.openoces.serviceprovider.CertificateRevocationHandler.RetrieveFullCrl(org.openoces.ooapi.certificate.OcesCertificate)">
+            <summary>
+            Retrieves the full CRL for the given certificate
+            </summary>
+            <param name="certificate">to retrieve full CRL for</param>
+            <returns>full CRL for the given certificate</returns>
+        </member>
+        <member name="M:org.openoces.serviceprovider.CertificateRevocationHandler.VerifyCertificateWithOcsp(org.openoces.ooapi.certificate.OcesCertificate)">
+            <summary>
+            This method verifies a certificate by calling the OCSP used in current Environment 
+            </summary>
+            <param name="certificate">certificate to verify</param>
+            <returns>true if certificate is revoked else false</returns>
+        </member>
+        <member name="T:org.openoces.serviceprovider.ConfigurationChecker">
+            <summary>
+            Use this class to check if your environment has been set up correctly.
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ConfigurationChecker.VerifyRootCertificateFromLdap">
+            <summary>
+            This method is used verify that a connection can be made to the LDAP directory holding
+            the root certificate for all environments begin set using the {@link Environments} class.
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ConfigurationChecker.VerifyFullCrl(org.openoces.ooapi.certificate.OcesCertificate)">
+            <summary>
+            Checks that a full CRL can be retrieved and is valid. Expects that an environment has been set up.
+            </summary>
+            <returns><code>true</code> if the CRL is retrieved or else false</returns>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ConfigurationChecker.VerifyPidService">
+            <summary>
+            Checks whether a connection can be made to the PID/CPR service by means of testing if 
+            the PID service is alive and reachable.
+            </summary>
+            <returns><code>true</code> if the PID/CPR service can be reached by the current environment setup</returns>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ConfigurationChecker.MakeTestConnectionToPidcprService(System.String)">
+            <summary>
+            Checks whether a connection can be made to the PID/CPR web service by means of calling 
+            the test method on the web service
+            </summary>
+            <returns><code>true</code> if a connection can be made</returns>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ConfigurationChecker.CanCallOcsp(System.String)">
+            <summary>
+            This method calls the OCSP configured for current <code>Environment</code>.
+            This method further validate the root certificate against the OCSP.
+            </summary>
+            <returns><code>true</code> if call went well, else <code>false</code></returns>
+        </member>
+        <member name="T:org.openoces.serviceprovider.EnvironmentTester">
+            <summary>
+            Use the Main method of this Class to test if the Environment has been setup correctly. 
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.EnvironmentTester.Main(System.String[])">
+            <summary>
+            Tests if the environment has been setup correctly.
+            </summary>
+            <param name="args">none - reacts on user input</param>
+        </member>
+        <member name="T:org.openoces.serviceprovider.ServiceProviderSetup">
+            <summary>
+            High-level set-up of the environment. This class is used for setting the
+            CRL revocation checker, the environment that the system is used in, and
+            the certificate used to communicate with the PID service.
+            
+            The default settings are:
+            <list type="bullet">
+            <item>Revocation checking is done using partitioned CRLs.</item>
+            <item>The OCES-II production environment is used.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ServiceProviderSetup.SetOcspRevocationChecker">
+            <summary>
+            Instructs OOAPI to check revocation of certificates using OCSP.
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ServiceProviderSetup.SetFullCrlRevocationChecker">
+            <summary>
+            Instructs OOAPI to check revocation of certificates by downloading
+            the full CRL.
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ServiceProviderSetup.SetPartitionedCrlRevocationChecker">
+            <summary>
+            Instructs OOAPI to check revocation of certificates by downloading
+            partial CRLs. This is the default.
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ServiceProviderSetup.SetEnvironmentToOcesIiProduction">
+            <summary>
+            Sets the environment to OCES-II production. This is the default.
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ServiceProviderSetup.SetEnvironmentToOcesIiExternalTest">
+            <summary>
+            Sets the environment to OCES-II external test.
+            </summary>
+        </member>
+        <member name="M:org.openoces.serviceprovider.ServiceProviderSetup.CreatePidServiceClient">
+            <summary>
+            Creates a new <see cref="T:org.openoces.ooapi.pidservice.PidService">PID service client</see> for the
+            current environment.
+            </summary>
+        </member>
+        <member name="P:org.openoces.serviceprovider.ServiceProviderSetup.CurrentChecker">
+            <summary>
+            Gets the current checker.
+            </summary>
+        </member>
+        <member name="T:org.openoces.serviceprovider.ServiceProviderException">
+            <summary>
+            General checked exception thrown from the Service Provider Package when something fails
+            </summary>
+        </member>
+    </members>
+</doc>

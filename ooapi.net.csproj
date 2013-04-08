@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D25F796E-7B51-4D0A-87F9-587ABD6B3F1B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>org.openoces</RootNamespace>
+    <AssemblyName>ooapi.net</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>org.openoces.serviceprovider.EnvironmentTester</StartupObject>
+    <DocumentationFile>sourcedoc.xml</DocumentationFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.5.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ooapi\certificate\CA.cs" />
+    <Compile Include="ooapi\certificate\CertificateStatus.cs" />
+    <Compile Include="ooapi\certificate\ChainVerifier.cs" />
+    <Compile Include="ooapi\certificate\FocesCertificate.cs" />
+    <Compile Include="ooapi\certificate\IOcesCertificate.cs" />
+    <Compile Include="ooapi\certificate\MocesCertificate.cs" />
+    <Compile Include="ooapi\certificate\OcesCertificate.cs" />
+    <Compile Include="ooapi\certificate\OcesCertificateFactory.cs" />
+    <Compile Include="ooapi\certificate\PocesCertificate.cs" />
+    <Compile Include="ooapi\certificate\VocesCertificate.cs" />
+    <Compile Include="ooapi\environment\Environments.cs" />
+    <Compile Include="ooapi\environment\OcesEnvironment.cs" />
+    <Compile Include="ooapi\environment\RootCertificates.cs" />
+    <Compile Include="ooapi\exceptions\AppletException.cs" />
+    <Compile Include="ooapi\exceptions\CertificateIsRevokedException.cs" />
+    <Compile Include="ooapi\exceptions\ChainVerificationException.cs" />
+    <Compile Include="ooapi\exceptions\InvalidCaIssuerUrlException.cs" />
+    <Compile Include="ooapi\exceptions\CrlExpiredException.cs" />
+    <Compile Include="ooapi\exceptions\CrlNotYetValidException.cs" />
+    <Compile Include="ooapi\exceptions\InvalidSignatureException.cs" />
+    <Compile Include="ooapi\exceptions\InvalidCrlException.cs" />
+    <Compile Include="ooapi\exceptions\InternalException.cs" />
+    <Compile Include="ooapi\exceptions\InvalidChainException.cs" />
+    <Compile Include="ooapi\exceptions\NonOcesCertificateException.cs" />
+    <Compile Include="ooapi\exceptions\TrustCouldNotBeVerifiedException.cs" />
+    <Compile Include="ooapi\ldap\LdapFactory.cs" />
+    <Compile Include="ooapi\ObjectIdentifiers.cs" />
+    <Compile Include="ooapi\ping\OcspAliveTester.cs" />
+    <Compile Include="ooapi\ping\PidAliveTester.cs" />
+    <Compile Include="ooapi\ping\RidAliveTester.cs" />
+    <Compile Include="ooapi\ridservice\RidService.cs" />
+    <Compile Include="ooapi\ridservice\RidServiceException.cs" />
+    <Compile Include="ooapi\signatures\Oces2ErrorCode.cs" />
+    <Compile Include="ooapi\signatures\OpenlogonSignature.cs" />
+    <Compile Include="ooapi\signatures\OpensignAbstractSignature.cs" />
+    <Compile Include="ooapi\signatures\OpensignSignature.cs" />
+    <Compile Include="ooapi\signatures\OpensignSignatureFactory.cs" />
+    <Compile Include="ooapi\signatures\SignatureProperty.cs" />
+    <Compile Include="ooapi\pidservice\CallerNotAuthorizedException.cs" />
+    <Compile Include="ooapi\pidservice\CallerNotAuthorizedForCprLookupException.cs" />
+    <Compile Include="ooapi\pidservice\PidService.cs" />
+    <Compile Include="ooapi\pidservice\PidServiceException.cs" />
+    <Compile Include="ooapi\signatures\SignedDocument.cs" />
+    <Compile Include="ooapi\TimeService.cs" />
+    <Compile Include="ooapi\utils\HttpClient.cs" />
+    <Compile Include="ooapi\validation\ICaCrlRevokedChecker.cs" />
+    <Compile Include="ooapi\web\OcesAppletElementGenerator.cs" />
+    <Compile Include="ooapi\utils\OcspClient.cs" />
+    <Compile Include="ooapi\utils\ocsp\OcspReqAndId.cs" />
+    <Compile Include="ooapi\utils\ocsp\Requester.cs" />
+    <Compile Include="ooapi\utils\ocsp\RequestGenerator.cs" />
+    <Compile Include="ooapi\utils\ocsp\ResponseParser.cs" />
+    <Compile Include="ooapi\utils\ocsp\SerialNumberConverter.cs" />
+    <Compile Include="ooapi\utils\Properties.cs" />
+    <Compile Include="ooapi\web\Signer.cs" />
+    <Compile Include="ooapi\utils\X509CertificatePropertyExtrator.cs" />
+    <Compile Include="ooapi\utils\XmlUtil.cs" />
+    <Compile Include="ooapi\validation\CachedHttpCrlDownloader.cs" />
+    <Compile Include="ooapi\validation\CachedLdapCrlDownloader.cs" />
+    <Compile Include="ooapi\validation\Crl.cs" />
+    <Compile Include="ooapi\validation\CrlCache.cs" />
+    <Compile Include="ooapi\validation\CRLDistributionPoints.cs" />
+    <Compile Include="ooapi\validation\CrlDistributionPointsExtractor.cs" />
+    <Compile Include="ooapi\validation\ErrorCodeChecker.cs" />
+    <Compile Include="ooapi\validation\FullCrlRevocationChecker.cs" />
+    <Compile Include="ooapi\validation\IDownloadableCrlJob.cs" />
+    <Compile Include="ooapi\validation\HttpCrlDownloader.cs" />
+    <Compile Include="ooapi\validation\IHttpCrlDownloader.cs" />
+    <Compile Include="ooapi\validation\OcspCertificateRevocationChecker.cs" />
+    <Compile Include="ooapi\validation\XmlDsigParser.cs" />
+    <Compile Include="ooapi\validation\IRevocationChecker.cs" />
+    <Compile Include="ooapi\validation\LdapCrlDownloader.cs" />
+    <Compile Include="ooapi\validation\PartitionedCrlRevocationChecker.cs" />
+    <Compile Include="ooapi\Version.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="securitypackage\exceptions\ChallengeDoesNotMatchException.cs" />
+    <Compile Include="securitypackage\LogonHandler.cs" />
+    <Compile Include="securitypackage\PersonID.cs" />
+    <Compile Include="securitypackage\SignatureValidationStatus.cs" />
+    <Compile Include="securitypackage\SignHandler.cs" />
+    <Compile Include="securitypackage\ChallengeVerifier.cs" />
+    <Compile Include="Service References\ooapi.pidservice.impl\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ridService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="serviceprovider\CertificateAndStatus.cs" />
+    <Compile Include="serviceprovider\CertificateRevocationHandler.cs" />
+    <Compile Include="serviceprovider\ConfigurationChecker.cs" />
+    <Compile Include="serviceprovider\EnvironmentTester.cs" />
+    <Compile Include="serviceprovider\ServiceProviderSetup.cs" />
+    <Compile Include="serviceprovider\ServiceProviderException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ooapi.pidservice.impl\item.wsdl" />
+    <None Include="Service References\ridService\HandleSundhedsportalWSPort.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ooapi.pidservice.impl\" />
+    <WCFMetadataStorage Include="Service References\ridService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ooapi.pidservice.impl\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Docs\korrektCSPwPrototypepfxname.pfx" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Service References\ooapi.pidservice.impl\org.openoces.ooapi.pidservice.impl.PIDReply.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ooapi.pidservice.impl\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Docs\README.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Licenses\BouncyCastle-license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Licenses\LICENSE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Licenses\NLog-license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Service References\ridService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ridService\configuration.svcinfo" />
+    <None Include="Service References\ridService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

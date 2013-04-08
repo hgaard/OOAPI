@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="createdoc">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ooapi</Name>
+    <TopicStyle>vs2005</TopicStyle>
+    <LanguageId>1033</LanguageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Dlls Include="$(MSBuildProjectDirectory)\bin\Debug\ooapi.net.exe" />
+    <Comments Include="$(MSBuildProjectDirectory)\bin\Debug\sourcedoc.xml" />
+    <Dependents Include="$(MSBuildProjectDirectory)\bin\Debug\*.*" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <Target Name="createdoc" DependsOnTargets="Chm">
+    <Copy SourceFiles="$(DXROOT)\Examples\$(Name)\$(TopicStyle)\chm\$(Name).chm" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="false" />
+  </Target>
+  <Import Project="$(DXROOT)\Examples\Generic\generic.targets" />
+</Project>
